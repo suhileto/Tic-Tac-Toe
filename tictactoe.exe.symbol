@@ -1,0 +1,42 @@
+< THE SYMBOL TABLE >  Mikroislemciler_finalödev_170418016.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00000     	-5        	SEGMENT   	(ITSELF)  
+GMSG                     	00000     	1         	VAR       	data      
+BOARD                    	00031     	1         	VAR       	data      
+BTXT                     	0003A     	1         	VAR       	data      
+BPOS                     	00076     	1         	VAR       	data      
+PMSG                     	0007F     	1         	VAR       	data      
+PIM1                     	000A6     	1         	VAR       	data      
+PIM2                     	000CC     	1         	VAR       	data      
+CMSG                     	000F5     	1         	VAR       	data      
+CRLF                     	0010B     	1         	VAR       	data      
+WINS                     	0010E     	2         	VAR       	data      
+XWIN                     	0013E     	1         	VAR       	data      
+OWIN                     	0015B     	1         	VAR       	data      
+MTIE                     	00178     	1         	VAR       	data      
+CODE                     	00019     	-5        	SEGMENT   	(ITSELF)  
+STARTUP                  	00000     	-1        	LABEL     	code      
+NEXT                     	0000F     	-1        	LABEL     	code      
+EXIT                     	00027     	-1        	LABEL     	code      
+SHOWBRD                  	00028     	-1        	NEAR      	code      
+LBC                      	0002D     	-1        	LABEL     	code      
+PMOVE                    	00044     	-1        	NEAR      	code      
+BPM                      	00073     	-1        	LABEL     	code      
+STP                      	00076     	-1        	LABEL     	code      
+PSO                      	0007C     	-1        	LABEL     	code      
+CMOVE                    	00082     	-1        	NEAR      	code      
+NCM                      	00084     	-1        	LABEL     	code      
+STN                      	000AD     	-1        	LABEL     	code      
+CHECK                    	000B0     	-1        	NEAR      	code      
+CAT                      	000B5     	-1        	LABEL     	code      
+WIO                      	000DF     	-1        	LABEL     	code      
+NMA                      	000E4     	-1        	LABEL     	code      
+CFB                      	000E8     	-1        	LABEL     	code      
+IAH                      	000F4     	-1        	LABEL     	code      
+EXC                      	000FA     	-1        	LABEL     	code      
+===================================================================================================
+[ 5.07.2020  --  00:34:12 ] 
+< END >
+ 

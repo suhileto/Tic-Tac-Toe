@@ -1,0 +1,236 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+Mikroislemciler_finalödev_170418016.exe -- emu8086 assembler version: 4.08  
+ 
+[ 5.07.2020  --  00:34:12 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       ;BLM2008.1 MIKROISLEMCILER FINAL PROJE ODEVI
+[   2]        :                                       ;05.07.2020
+[   3]        :                                       ;SUHENDA HILAL ETO
+[   4]        :                                       ;170418016
+[   5]        :                                       
+[   6]        :                                       
+[   7]        :                                       .MODEL SMALL
+[   8]        :                                       .DATA
+[   9]    0000: 54 49 43 20 54 41 43 20 54 4F 45 20   GMSG  DB  'TIC TAC TOE OYUNU',0DH,0AH
+                4F 59 55 4E 55 0D 0A                
+[  10]    0013: 4B 55 4C 4C 41 4E 49 43 49 20 58 2C   DB  'KULLANICI X, BILGISAYAR O',0DH,0AH,0DH,0AH,'$'
+                20 42 49 4C 47 49 53 41 59 41 52 20 
+                4F 0D 0A 0D 0A 24                   
+[  11]    0031: 31 32 33 34 35 36 37 38 39            BOARD DB  '123456789'
+[  12]    003A: 0D 0A                                 BTXT  DB  0DH,0AH
+[  13]    003C: 20 20 7C 20 20 20 7C 20 20 0D 0A      DB  '  |   |  ',0DH,0AH   ;tahta tanimladik
+[  14]    0047: 2D 2D 2D 2D 2D 2D 2D 2D 2D 0D 0A      DB  '---------',0DH,0AH
+[  15]    0052: 20 20 7C 20 20 20 7C 20 20 0D 0A      DB  '  |   |  ',0DH,0AH
+[  16]    005D: 2D 2D 2D 2D 2D 2D 2D 2D 2D 0D 0A      DB  '---------',0DH,0AH
+[  17]    0068: 20 20 7C 20 20 20 7C 20 20 0D 0A 0D   DB  '  |   |  ',0DH,0AH,0DH,0AH,'$'
+                0A 24                               
+[  18]    0076: 02 06 0A 18 1C 20 2E 32 36            BPOS  DB  2,6,10,24,28,32,46,50,54
+[  19]    007F: 53 49 52 41 20 53 49 5A 44 45 20 30   PMSG  DB  'SIRA SIZDE 0-9 ARASINDA BIR SAYI GIR: $'
+                2D 39 20 41 52 41 53 49 4E 44 41 20 
+                42 49 52 20 53 41 59 49 20 47 49 52 
+                3A 20 24                            
+[  20]    00A6: 0D 0A 59 41 4E 4C 49 53 20 48 41 52   PIM1  DB  0DH,0AH,'YANLIS HAREKET LUTFEN TEKRAR DENE',0DH,0AH,'$'
+                45 4B 45 54 20 4C 55 54 46 45 4E 20 
+                54 45 4B 52 41 52 20 44 45 4E 45 0D 
+                0A 24                               
+[  21]    00CC: 0D 0A 53 45 43 54 49 47 49 4E 20 59   PIM2  DB  0DH,0AH,'SECTIGIN YER DOLU,LUTFEN TEKRAR DENE',0DH,0AH,'$'
+                45 52 20 44 4F 4C 55 2C 4C 55 54 46 
+                45 4E 20 54 45 4B 52 41 52 20 44 45 
+                4E 45 0D 0A 24                      
+[  22]    00F5: 42 49 4C 47 49 53 41 59 41 52 20 4F   CMSG  DB  'BILGISAYAR OYNUYOR.. $'
+                59 4E 55 59 4F 52 2E 2E 20 24       
+[  23]    010B: 0D 0A 24                              CRLF  DB  0DH,0AH,'$'
+[  24]    010E: 01 00 02 00 03 00 04 00 05 00 06 00   WINS  DW  1,2,3, 4,5,6, 7,8,9                ;satir olarak kazanma ihtimali
+                07 00 08 00 09 00                   
+[  25]    0120: 01 00 04 00 07 00 02 00 05 00 08 00   DW  1,4,7, 2,5,8, 3,6,9                ;sutun olarak kazanma ihtimali
+                03 00 06 00 09 00                   
+[  26]    0132: 01 00 05 00 09 00 03 00 05 00 07 00   DW  1,5,9, 3,5,7                       ;capraz kazanma ihtimali
+                                                    
+[  27]    013E: 58 20 4F 59 55 4E 55 20 4B 41 5A 41   XWIN  DB  'X OYUNU KAZANDI,TEBRIKLER!',0DH,0AH,'$'
+                4E 44 49 2C 54 45 42 52 49 4B 4C 45 
+                52 21 0D 0A 24                      
+[  28]    015B: 4F 20 4F 59 55 4E 55 20 4B 41 5A 41   OWIN  DB  'O OYUNU KAZANDI,KAYBETTIN!',0DH,0AH,'$'
+                4E 44 49 2C 4B 41 59 42 45 54 54 49 
+                4E 21 0D 0A 24                      
+[  29]    0178: 4F 59 55 4E 20 42 45 52 41 42 45 52   MTIE  DB  'OYUN BERABERE BITTI',0DH,0AH,'$'
+                45 20 42 49 54 54 49 0D 0A 24       
+[  30]        :                                       
+[  31]        :                                       .CODE
+[  32]    0190: BA 00 00 8E DA                        .STARTUP
+[  33]    0195: BA 00 00                              LEA   DX,GMSG  ;baslangic icin bir pointer tanimladik
+[  34]    0198: B4 09                                 MOV   AH,9     ;stringi gosterdik
+[  35]    019A: CD 21                                 INT   21H
+[  36]    019C: E8 19 00                              CALL  SHOWBRD  ;tahtayi gosterdik
+[  37]    019F: E8 32 00                              NEXT:  CALL  PMOVE    ;kullanici hareketini aldik
+[  38]    01A2: E8 13 00                              CALL  SHOWBRD  ;tahtayi gosterdik
+[  39]    01A5: E8 98 00                              CALL  CHECK    ;kazanip kazanmadigini kontrol ettik
+[  40]    01A8: 74 0D                                 JZ    EXIT
+[  41]    01AA: E8 65 00                              CALL  CMOVE    ;bilgisayar bos bir alana oynadi
+[  42]    01AD: E8 08 00                              CALL  SHOWBRD  ;tahtayi gosterdik
+[  43]    01B0: E8 8D 00                              CALL  CHECK    ;kazanip kazanmadigini kontrol ettik
+[  44]    01B3: 74 02                                 JZ    EXIT
+[  45]    01B5: EB E8                                 JMP   NEXT     ;oyuna devam
+[  46]    01B7: F4                                    EXIT:  HLT
+[  47]        :                                       
+[  48]    01B8:                                       SHOWBRD PROC  NEAR
+[  49]    01B8: B9 09 00                              MOV   CX,9             ;bir loop tanimladik
+[  50]    01BB: 2B F6                                 SUB   SI,SI            ;baslangic pointeri tanimladik
+[  51]    01BD: 8A 44 76                              LBC:    MOV   AL,BPOS[SI]      ;tahtadaki pozisyonu aldik
+[  52]    01C0: 98                                    CBW                    ;sembole cevirdik
+[  53]    01C1: 8B F8                                 MOV   DI,AX            ;pointeri tahtanin stringine tanimladik
+[  54]    01C3: 8A 44 31                              MOV   AL,BOARD[SI]     ;oyuncunun sembolunu aldik
+[  55]    01C6: 88 45 3A                              MOV   BTXT[DI],AL      ;pointeri tahtanin stringine yerlestirdik
+[  56]    01C9: 46                                    INC   SI               ;pointer tanimladik
+[  57]    01CA: E2 F1                                 LOOP  LBC              ;her dokuz kare icin tekrarladik
+[  58]    01CC: BA 3A 00                              LEA   DX,BTXT          ;pointeri tahtanin stringine tanimladik
+[  59]    01CF: B4 09                                 MOV   AH,9             ;string fonksiyonunu gosterdik
+[  60]    01D1: CD 21                                 INT   21H              ;DOS
+[  61]    01D3: C3                                    RET
+[  62]        :                                       SHOWBRD ENDP
+[  63]        :                                       
+[  64]    01D4:                                       PMOVE  PROC NEAR
+[  65]    01D4: BA 7F 00                              LEA  DX,PMSG         ;oyuncu stringi icin bir pointer tanimladik
+[  66]    01D7: B4 09                                 MOV  AH,9            ;string fonksiyonunu gosterdik
+[  67]    01D9: CD 21                                 INT  21H             ;DOS
+[  68]    01DB: B4 01                                 MOV  AH,1            ;klavyeden girisi okuduk
+[  69]    01DD: CD 21                                 INT  21H             ;DOS
+[  70]    01DF: 3C 31                                 CMP  AL,'1'          ;sayi girip girilmedigini karsilastirdik
+[  71]    01E1: 72 20                                 JC   BPM
+[  72]    01E3: 3C 3A                                 CMP  AL,'9'+1
+[  73]    01E5: 73 1C                                 JNC  BPM
+[  74]    01E7: 2C 31                                 SUB  AL,31H          ;ASCII sapmasini duzelttik
+[  75]    01E9: 98                                    CBW                  ;kelimeye cevirdik
+[  76]    01EA: 8B F0                                 MOV  SI,AX           ;baslangic pointeri tanimladik
+[  77]    01EC: 8A 44 31                              MOV  AL,BOARD[SI]    ;tahtanin sembolunu kontrol ettik
+[  78]    01EF: 3C 58                                 CMP  AL,'X'          ;tahtada o yer bos mu dolu mu diye baktik
+[  79]    01F1: 74 19                                 JZ   PSO
+[  80]    01F3: 3C 4F                                 CMP  AL,'O'
+[  81]    01F5: 74 15                                 JZ   PSO
+[  82]    01F7: C6 44 31 58                           MOV  BOARD[SI],'X'   ;oyuncu hareketini sakladik
+[  83]    01FB: BA 0B 01                              LEA  DX,CRLF         ;yeni satir icin pointer tanimladik
+[  84]    01FE: B4 09                                 MOV  AH,9            ;string fonksiyonunu gosterdik
+[  85]    0200: CD 21                                 INT  21H             ;DOS
+[  86]    0202: C3                                    RET
+[  87]    0203: BA A6 00                              BPM:   LEA  DX,PIM1         ;illegal string icin pointer tanimladik
+[  88]    0206: B4 09                                 STP:   MOV  AH,9            ;string fonksiyonunu gosterdik
+[  89]    0208: CD 21                                 INT  21H             ;DOS
+[  90]    020A: EB C8                                 JMP  PMOVE           ;oyuncuya ikinci bir sans tanima
+[  91]    020C: BA CC 00                              PSO:   LEA  DX,PIM2         ;dolu olan yer stringi icin yeni bir pointer tanimladik
+[  92]    020F: EB F5                                 JMP  STP             ;error mesaji
+[  93]    0211: C3                                    RET
+[  94]        :                                       PMOVE  ENDP
+[  95]        :                                       
+[  96]    0212:                                       CMOVE  PROC NEAR
+[  97]    0212: 2B F6                                 SUB  SI,SI           ;baslangic pointerini sifirladik
+[  98]    0214: 8A 44 31                              NCM:   MOV  AL,BOARD[SI]    ;tahtanin sembolune baktik
+[  99]    0217: 3C 58                                 CMP  AL,'X'          ;tahtada o yer bos mu dolu mu diye baktik
+[ 100]    0219: 74 22                                 JZ   STN
+[ 101]    021B: 3C 4F                                 CMP  AL,'O'
+[ 102]    021D: 74 1E                                 JZ   STN
+[ 103]    021F: C6 44 31 4F                           MOV  BOARD[SI],'O'   ;bilgisayar hamlesini tuttuk
+[ 104]    0223: 8B C6                                 MOV  AX,SI
+[ 105]    0225: 50                                    PUSH AX
+[ 106]    0226: BA F5 00                              LEA  DX,CMSG         ;secim stringi icin pointer tanimladik
+[ 107]    0229: B4 09                                 MOV  AH,9            ;string fonksiyonunu gosterdik
+[ 108]    022B: CD 21                                 INT  21H             ;DOS
+[ 109]    022D: 5A                                    POP  DX              ;hamleyi getirdik
+[ 110]    022E: 80 C2 31                              ADD  DL,31H          ;ASCII sapmasini ekledik
+[ 111]    0231: B4 02                                 MOV  AH,2            ;karakter fonksiyonunu gosterdik
+[ 112]    0233: CD 21                                 INT  21H             ;DOS
+[ 113]    0235: BA 0B 01                              LEA  DX,CRLF         ;yeni satir icin pointer tanimladik
+[ 114]    0238: B4 09                                 MOV  AH,9            ;string fonksiyonunu gosterdik
+[ 115]    023A: CD 21                                 INT  21H             ;DOS
+[ 116]    023C: C3                                    RET
+[ 117]    023D: 46                                    STN:   INC  SI              ;sonraki kutucuga ilerle
+[ 118]    023E: EB D4                                 JMP  NCM             ;sonraki kutucugu kontrol et
+[ 119]        :                                       CMOVE  ENDP
+[ 120]        :                                       
+[ 121]    0240:                                       CHECK  PROC NEAR
+[ 122]    0240: 2B F6                                 SUB  SI,SI             ;baslangic pointerini sifirladik
+[ 123]    0242: B9 08 00                              MOV  CX,8              ;loop sayici kurduk
+[ 124]    0245: 8B BC 0E 01                           CAT:   MOV  DI,WINS[SI]       ;tahtanin birinci pozisyonunu al
+[ 125]    0249: 8A 65 30                              MOV  AH,BOARD[DI-1]    ;sembolunu al
+[ 126]    024C: 8B BC 10 01                           MOV  DI,WINS[SI+2]     ;tahtanin ikinci pozisyonunu al
+[ 127]    0250: 8A 5D 30                              MOV  BL,BOARD[DI-1]    ;sembolunu al
+[ 128]    0253: 8B BC 12 01                           MOV  DI,WINS[SI+4]     ;tahtanin ucuncu pozisyonunu al
+[ 129]    0257: 8A 7D 30                              MOV  BH,BOARD[DI-1]    ;sembolunu al
+[ 130]    025A: 83 C6 06                              ADD  SI,6              ;sonraki pozisyonlara ilerle
+[ 131]    025D: 3A E3                                 CMP  AH,BL             ;aldigimiz bu uc sembol ayni mi kontrol ediyoruz
+[ 132]    025F: 75 13                                 JNZ  NMA
+[ 133]    0261: 3A E7                                 CMP  AH,BH
+[ 134]    0263: 75 0F                                 JNZ  NMA
+[ 135]    0265: 80 FC 58                              CMP  AH,'X'            ;uc sembol ayniysa bunlar X'i iceeriyor mu kontrol ediyoruz
+[ 136]    0268: 75 05                                 JNZ  WIO
+[ 137]    026A: BA 3E 01                              LEA  DX,XWIN           ;oyuncu kazandi sringi icin pointer tanimladik
+[ 138]    026D: EB 1B                                 JMP  EXC               ;islem stringi
+[ 139]    026F: BA 5B 01                              WIO:   LEA  DX,OWIN           ;bilgisayar kazandi stringi icin pointer tanimladik
+[ 140]    0272: EB 16                                 JMP  EXC               ;islem stringi
+[ 141]    0274: E2 CF                                 NMA:   LOOP CAT               ;bu ucu eslesmiyor baska gruba bakicaz
+[ 142]    0276: 2B F6                                 SUB  SI,SI             ;baslangic pointerini sifirliyoruz
+[ 143]    0278: 8A 44 31                              CFB:   MOV  AL,BOARD[SI]      ;tahtanin sembolunu aldik
+[ 144]    027B: 3C 58                                 CMP  AL,'X'            ;X sembolu mu diye kontrol ediyoruz
+[ 145]    027D: 74 05                                 JZ   IAH
+[ 146]    027F: 3C 4F                                 CMP  AL,'O'            ;is symbol O?
+[ 147]    0281: 74 01                                 JZ   IAH
+[ 148]    0283: C3                                    RET                    ;beraberlik degilse hala
+[ 149]    0284: 46                                    IAH:   INC  SI                ;diger pozisyona ilerle
+[ 150]    0285: E2 F1                                 LOOP CFB               ;diger tahta sembollerini kontrol et
+[ 151]    0287: BA 78 01                              LEA  DX,MTIE           ;beraberlik mesaji icin pointer tanimladik
+[ 152]    028A: B4 09                                 EXC:   MOV  AH,9              ;string fonksiyonunu gosterdik
+[ 153]    028C: CD 21                                 INT  21H               ;DOS call
+[ 154]    028E: 2A C0                                 SUB  AL,AL
+[ 155]    0290: C3                                    RET
+[ 156]        :                                       CHECK  ENDP
+[ 157]        :                                       
+[ 158]        :                                       END
+[ 159]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 91      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: 5A      -   check sum (l.byte)
+0013: 0D      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 19      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 19      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================
